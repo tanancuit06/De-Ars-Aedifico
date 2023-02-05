@@ -30,5 +30,5 @@ Please refer to LICENSE file. The license may be changed later but will be focus
 ## Other
 
 Original date: 04/02/2023 \
-Last modified date: 05/02/2023
+Last modified date: 05/02/2023 \
 Author: tanancuit06
