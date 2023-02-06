@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "Test"
+		},
+		{
+			"path": "Prod"
+		},
+		{
+			"path": "Docs"
+		}
+	],
+	"settings": {}
+}
