@@ -47,8 +47,8 @@ plt.xlabel("x-axis")
 plt.ylabel("y-axis")
 plt.show()
 
-node_list_x.remove(node_list_x[-1])
-node_list_y.remove(node_list_y[-1])
+node_list_x.pop()
+node_list_y.pop()
 
 print("Node list of x coordinates: ", node_list_x, "\n" + "Node list of y coordinates: ", node_list_y)
 
