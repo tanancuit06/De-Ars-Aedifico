@@ -6,14 +6,19 @@
 # centroid of any 2D object. It is thought to use the Gauss's Area Formula 
 # to calculate the simple polygon area.
 # 
-# Phase 1: Area calculation
+# Phase 1: Area calculation (05/02/2023)
 # Input: nodes coordinates
-# Gauss's Area Formula
+# Method: Gauss's Area Formula
 # Output: area value
+# 
+# Phase 2: Area calculation (12/02/2023)
+# Input: nodes coordinates, area
+# Method: centroid of polygon formulas
+# Output: centroid coordinates
 #
 # Author: tanancuit06
 # Original date: 05/02/2023
-# Last modified date: 12/02/2023
+# Last modified date: 13/02/2023
 #---------------------------------------------------------------------------
 
 # Import lines
@@ -67,6 +72,22 @@ prod_2 = node_list_x[0]*node_list_y[len(node_list_y)-1]
 polygon_area = 0.5*np.abs(sum_x + prod_1 - sum_y - prod_2)
 print("Polygon area = ", polygon_area)
 
+# Centroid formulas
+
+node_list_x.append(node_list_x[0])
+node_list_y.append(node_list_y[0])
+
+Cx = 0
+for i in range(len(node_list_x)-1):
+    Cx += (node_list_x[i] + node_list_x[i+1]) * (node_list_x[i]*node_list_y[i+1] - node_list_x[i+1]*node_list_y[i])
+Cx = (1/(6*polygon_area))*abs(Cx)
+
+Cy = 0
+for i in range(len(node_list_y)-1):
+    Cy += (node_list_y[i] + node_list_y[i+1]) * (node_list_x[i]*node_list_y[i+1] - node_list_x[i+1]*node_list_y[i])
+Cy = (1/(6*polygon_area))*abs(Cy)
+
+print("Centroid x-coordinate: ", Cx, "\n" + "Centroid y-coordinate: ", Cy)
 
 '''
 # Program loop

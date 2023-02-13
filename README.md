@@ -20,7 +20,7 @@ It is intended to the following:
 
 ### Procedures
 
-1. The scripts are going to be initially developed by using Python 3.0 in order to get working features delivered at a fast pace and will serve as prototypes. After successful testing, these are going to be rewritten in C++ as structural calculations are not suited to be done in Python.
+1. The scripts are going to be initially developed by using Python 3.10 in order to get working features delivered at a fast pace and will serve as prototypes. After successful testing, these are going to be rewritten in C++ as structural calculations are not suited to be done in Python.
 2. It will use procedural and object oriented paradigms.
 
 ## License
