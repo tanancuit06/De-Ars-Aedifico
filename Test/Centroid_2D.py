@@ -1,6 +1,7 @@
 #---------------------------------------------------------------------------
 # Centroid_2D.py
 # 
+# Description:
 # This script provides the mathematical means to calculate the geometric
 # centroid of any 2D object. It is thought to use the Gauss's Area Formula 
 # to calculate the simple polygon area.
@@ -9,43 +10,75 @@
 # Input: nodes coordinates
 # Gauss's Area Formula
 # Output: area value
+#
+# Author: tanancuit06
+# Original date: 05/02/2023
+# Last modified date: 12/02/2023
 #---------------------------------------------------------------------------
 
 # Import lines
 import Structural_Classes as struct_clss
+import Centroid_2D_func
 import numpy as np
 import matplotlib.pyplot as plt
 
 # Node creation
-node1 = struct_clss.Node('A',1,1,0)
-node2 = struct_clss.Node('B',2,4,0)
-node3 = struct_clss.Node('C',5,5,0)
-node4 = struct_clss.Node('D',4,2,0)
+node_list = []
+Centroid_2D_func.add_node(node_list,"0",1,1,0)
+Centroid_2D_func.add_node(node_list,"0",2,4,0)
+Centroid_2D_func.add_node(node_list,"0",5,5,0)
+Centroid_2D_func.add_node(node_list,"0",4,2,0)
+
+# Polygon coordinates arrays creation
+node_list_x = []
+node_list_y = []
+
+for i in range(len(node_list)):
+    node_list_x.append(node_list[i]["x"])
+    node_list_y.append(node_list[i]["y"])
+
+node_list_x.append(node_list_x[0])
+node_list_y.append(node_list_y[0])
 
 # Polygon drawing
-plt.plot([node1.x,node2.x,node3.x,node4.x,node1.x],
-[node1.y,node2.y,node3.y,node4.y,node1.y])
-plt.ylabel('Area of polygon')
+plt.plot(node_list_x,node_list_y)
+plt.title('Area of polygon')
+plt.xlabel("x-axis")
+plt.ylabel("y-axis")
 plt.show()
 
-# Arrays creation
-x_array = np.array([node1.x,node2.x,node3.x,node4.x])
-y_array = np.array([node1.y,node2.y,node3.y,node4.y])
+node_list_x.remove(node_list_x[-1])
+node_list_y.remove(node_list_y[-1])
+
+print("Node list of x coordinates: ", node_list_x, "\n" + "Node list of y coordinates: ", node_list_y)
 
 # Gauss's Area Formula
 sum_x = 0
-for i in range(0,len(x_array)-1):
-    sum_x += x_array[i]*y_array[i+1]
-    print(sum_x)
+for i in range(0,len(node_list_x)-1):
+    sum_x += node_list_x[i]*node_list_y[i+1]
 
 sum_y = 0
-for i in range(0,len(y_array)-1):
-    sum_y += x_array[i+1]*y_array[i]
-    print(sum_y)
+for i in range(0,len(node_list_y)-1):
+    sum_y += node_list_x[i+1]*node_list_y[i]
 
-prod_1 = x_array[len(x_array)-1]*y_array[0]
-prod_2 = x_array[0]*y_array[len(y_array)-1]
+prod_1 = node_list_x[len(node_list_x)-1]*node_list_y[0]
+prod_2 = node_list_x[0]*node_list_y[len(node_list_y)-1]
 
 polygon_area = 0.5*np.abs(sum_x + prod_1 - sum_y - prod_2)
 print("Polygon area = ", polygon_area)
 
+
+'''
+# Program loop
+while(True):
+    print("Welcome. This script calculates the area of a polygon.",
+    "This can be used to calculate centroids. \n", 
+    "Your options are: \n",
+    "A. Add a node to create a polygon. \n",
+    "C. Calculate the area of the polygon created by the nodes. \n",
+    "D. Draw and print the polygon. \n",
+    "R. Clean an existing polygon. \n",
+    "Q. Quit \n")
+    option = input("Option: ")
+
+'''
